@@ -1,124 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bathu Spa — Premium Sneaker, Bag & Home Cleaning. Deep cleans, restorations, waterproofing & home care that hits different." />
-  <title>Bathu Spa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="assets/favicon.ico" />
-</head>
-<body>
-  <header class="site-header">
-    <nav class="nav">
-      <a class="logo" href="index.html">Bathu <span>Spa</span></a>
-      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a class="btn btn-primary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">Book Now</a></li>
-      </ul>
-    </nav>
-  </header>
+// Bathu Spa — Interactions (luxury but subtle)
 
-  <section class="page-hero">
-    <div class="container">
-      <h1>Services</h1>
-      <p>From sneakers to sofas — clean, restore, protect.</p>
-    </div>
-  </section>
+const $ = (sel, ctx=document) => ctx.querySelector(sel);
+const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
-  <section class="container service-list">
-    <article id="sneaker-deep-clean" class="service-block">
-      <h2>Sneaker Deep Clean</h2>
-      <p>Restore freshness, remove stains and revive your sole.</p>
-      <ul>
-        <li>Deep clean & stain treatment</li>
-        <li>Odour neutralising</li>
-        <li>Laces & insole cleaning</li>
-        <li>Sole revival</li>
-      </ul>
-      <a class="btn btn-secondary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">Book Sneaker Clean</a>
-    </article>
+// Year in footer
+const yearEl = $('#year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    <article id="waterproofing" class="service-block">
-      <h2>Waterproofing</h2>
-      <p>Hydrophobic coating that protects against water, dirt and stains.</p>
-      <ul>
-        <li>Repels water</li>
-        <li>Blocks dirt</li>
-        <li>Makes cleaning easier</li>
-        <li>Perfect for white sneakers</li>
-      </ul>
-      <a class="btn btn-secondary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">Add Waterproofing</a>
-    </article>
+// Mobile nav
+const burger = $('.nav__burger');
+const links = $('.nav__links');
+const cta = $('.nav__cta');
 
-    <article id="bag-restoration" class="service-block">
-      <h2>Bag & Handbag Restoration</h2>
-      <p>Professional deep cleaning and leather care.</p>
-      <ul>
-        <li>Fabric/leather deep clean</li>
-        <li>Colour touch‑ups</li>
-        <li>Stain removal</li>
-        <li>Handle cleaning</li>
-      </ul>
-      <a class="btn btn-secondary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">Book Bag Restoration</a>
-    </article>
+if (burger) {
+  burger.addEventListener('click', () => {
+    const expanded = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!expanded));
+    links.style.display = expanded ? 'none' : 'flex';
+    if (cta) cta.style.display = expanded ? 'none' : 'inline-flex';
+  });
+}
 
-    <article id="sofa-deep-clean" class="service-block">
-      <h2>Sofa & Couch Deep Clean</h2>
-      <p>Deep extraction cleaning for a healthier home.</p>
-      <ul>
-        <li>Dust & germ removal</li>
-        <li>Stain treatment</li>
-        <li>Odour neutralising</li>
-        <li>Quick drying</li>
-      </ul>
-      <a class="btn btn-secondary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">Book Home Clean</a>
-    </article>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
 
-    <article id="mattress-sanitising" class="service-block">
-      <h2>Mattress Sanitising</h2>
-      <p>Remove hidden dirt, germs and odours for better sleep.</p>
-      <ul>
-        <li>Deep extraction</li>
-        <li>Allergy reduction</li>
-        <li>Sweat stain treatment</li>
-        <li>Fresh finish</li>
-      </ul>
-      <a class="btn btn-secondary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">Book Mattress Clean</a>
-    </article>
-  </section>
+$$('.reveal').forEach(el => observer.observe(el));
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <h3 class="logo">Bathu <span>Spa</span></h3>
-        <p>Premium Sneaker • Bag • Home Cleaning</p>
-      </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul class="list-plain">
-          <li><a href="services.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Book Now</h4>
-        <p>Fast WhatsApp booking. Same‑day replies.</p>
-        <p><a class="btn btn-secondary" href="https://wa.me/27XXXXXXXXX?text=Hi%20Bathu%20Spa%2C%20I%27d%20like%20to%20book%20a%20cleaning." target="_blank" rel="noopener">WhatsApp Us</a></p>
-      </div>
-    </div>
-    <div class="copyright">© 2026 Bathu Spa • All rights reserved.</div>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+// Before/After sliders
+$$('.compare').forEach(compare => {
+  const slider = $('.compare__slider', compare);
+  const after = $('.compare__after', compare);
+
+  const setClip = (value) => {
+    const v = Number(value);
+    after.style.clipPath = `inset(0 0 0 ${100 - v}%)`;
+  };
+
+  setClip(slider.value);
+  slider.addEventListener('input', (e) => setClip(e.target.value));
+});
