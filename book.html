@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" class="page">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Book — Bathu Spa</title><link rel="stylesheet" href="styles.css"/>
+<style>.book{display:grid;gap:16px;max-width:720px;margin:0 auto}.form{display:grid;gap:12px}.form label{display:grid;gap:6px}.row{display:grid;gap:12px}@media(min-width:768px){.row{grid-template-columns:1fr 1fr}}</style>
+</head>
+<body class="page-body" data-page="book">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="nav"><div class="container nav__inner"><a href="/" class="nav__brand"><img src="assets/logo.svg" alt="Bathu Spa" width="32" height="32"/><span>Bathu Spa</span></a><nav class="nav__links"><a href="/services.html">Services</a><a href="/pricing.html">Pricing</a></nav><a class="btn btn--gold nav__cta" target="_blank" rel="noopener" href="https://wa.me/27790834264">WhatsApp</a><button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button></div></header>
+  <main id="main" class="section"><div class="container book">
+    <header class="section__head"><h1 class="title">Book Your Service</h1><p class="muted">Choose service(s), add-ons, and preferred date — we’ll pre-fill your WhatsApp message.</p></header>
+    <form class="form" id="bookForm">
+      <label>Full Name<input required name="name" class="input" placeholder="Your name"/></label>
+      <label>Phone (optional)<input name="phone" class="input" placeholder="e.g. 079 000 0000"/></label>
+      <div class="row">
+        <label>Service<select name="service" required>
+          <option value="Deep Clean">Deep Clean</option>
+          <option value="Premium Clean">Premium Clean</option>
+          <option value="Bag Waterproofing">Bag Waterproofing</option>
+          <option value="Custom Lab">Custom Lab</option>
+        </select></label>
+        <label>Preferred Date<input type="date" name="date" required/></label>
+      </div>
+      <fieldset style="border:1px solid rgba(255,255,255,.15);padding:12px;border-radius:10px">
+        <legend>Add-ons</legend>
+        <label><input type="checkbox" name="addons" value="Waterproofing"/> Waterproofing</label>
+        <label><input type="checkbox" name="addons" value="Express"/> Express Service</label>
+        <label><input type="checkbox" name="addons" value="Pickup & Delivery"/> Pickup & Delivery</label>
+      </fieldset>
+      <label>Notes (material, stains, shoe type)<textarea name="notes" rows="3" placeholder="e.g. White Air Force 1, scuffed midsole"></textarea></label>
+      <div>
+        <button class="btn btn--gold" type="submit">Create WhatsApp Message</button>
+        <a id="waLink" class="btn btn--ghost" target="_blank" rel="noopener" style="display:none">Open WhatsApp</a>
+      </div>
+    </form>
+  </div></main>
+  <script>
+    const f = document.getElementById('bookForm');
+    const a = document.getElementById('waLink');
+    f.addEventListener('submit', e=>{
+      e.preventDefault();
+      const d = new FormData(f);
+      const name = d.get('name');
+      const phone = d.get('phone')||'';
+      const service = d.get('service');
+      const date = d.get('date');
+      const notes = d.get('notes')||'';
+      const addons = d.getAll('addons');
+      const msg = `Booking request%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AService: ${encodeURIComponent(service)}%0AAdd-ons: ${encodeURIComponent(addons.join(', ')||'none') }%0ADate: ${encodeURIComponent(date)}%0ANotes: ${encodeURIComponent(notes)}`;
+      const url = new URL('https://wa.me/27790834264');
+      url.searchParams.set('text', msg);
+      url.searchParams.set('utm_source','website');
+      url.searchParams.set('utm_medium','form');
+      url.searchParams.set('utm_campaign','whatsapp');
+      a.href = url.toString();
+      a.style.display = 'inline-flex';
+      a.textContent = 'Open WhatsApp';
+      a.focus();
+    });
+  </script>
+</body></html>

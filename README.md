@@ -1,19 +1,27 @@
-# Bathu Spa — Fresh Start v2 (Luxury)
+# Bathu Spa 3.0 — Upgrade Pack
 
-This is a clean, multi-page luxury site ready for GitHub + Netlify.
+Adds ALL upgrades on top of Fresh Start v2:
 
-## What you get
-- **index.html** — premium homepage (preloader, transitions, a11y)
-- **pricing.html** — full pricing page (clean cards + add-ons)
-- **services.html** — services hub
-- **deep-clean.html / premium-clean.html / bag-waterproofing.html / custom-lab.html** — SEO landing pages with JSON-LD
-- **styles.css** — luxury theme + focus states + reduced motion
-- **script.js** — preloader + page fade + reveal-on-scroll + sliders
-- **robots.txt / sitemap.xml / site.webmanifest**
-- **assets/** — placeholder images + logo
+- **Gallery** with lightbox → `gallery.html`
+- **WhatsApp Smart Booking** form → `book.html`
+- **JSON‑driven Pricing** → `data/pricing.json` + `pricing.html`
+- **PWA** (service worker) → `sw.js` + security headers `_headers` + `_redirects`
+- **404.html** (luxury)
 
-## Deploy (web UI on `main`)
-1. Delete old files (use github.dev editor for quick multi-delete).
-2. Upload everything from this folder to repo root → **Commit to main**.
-3. Replace `https://YOUR-DOMAIN` in `<head>` and `sitemap.xml` with your real domain.
-4. Swap images in `assets/` with real brand shots.
+## Install (GitHub web UI on `main`)
+1) Add/replace these files at the repo root: `gallery.html`, `book.html`, `pricing.html`, `sw.js`, `_headers`, `_redirects`, `404.html`, folder `data/`.
+2) Open `index.html` and register the service worker **before `</body>`**:
+```html
+<script>
+if ('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+</script>
+```
+3) Add nav/footer links to **Gallery** and **Book** pages.
+4) Commit to `main` → Netlify deploys.
+
+## Edit prices
+- Update `data/pricing.json`; the pricing page updates automatically.
+
+## Notes
+- Replace placeholder images in `/assets` with your real shots (keep file names to avoid HTML changes).
+- Consider converting images to WebP for speed (optional next step).
