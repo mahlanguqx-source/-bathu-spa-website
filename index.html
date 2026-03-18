@@ -206,6 +206,14 @@
   </footer>
   <a class="whatsapp-float" target="_blank" rel="noopener" href="https://wa.me/27790834264?text=Hi%20Bathu%20Spa%20team%20%E2%80%94%20I’d%20like%20to%20book%20a%20service.&utm_source=website&utm_medium=cta&utm_campaign=whatsapp">WhatsApp</a>
 
+<!-- Bathu Spa 3.0: Service Worker registration -->
+<script>
+  if ('serviceWorker' in navigator) {
+    // Register our PWA service worker
+    navigator.serviceWorker.register('/sw.js').catch(console.error);
+  }
+</script>
+
   <script src="script.js"></script>
 </body>
 </html>
