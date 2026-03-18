@@ -1,31 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" class="page">
-<head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Pricing — Bathu Spa</title>
-  <link rel="stylesheet" href="styles.css"/>
-</head>
-<body class="page-body" data-page="pricing">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="nav"><div class="container nav__inner"><a href="/" class="nav__brand"><img src="assets/logo.svg" alt="Bathu Spa" width="32" height="32"/><span>Bathu Spa</span></a><nav class="nav__links"><a href="/services.html">Services</a><a href="/pricing.html">Pricing</a></nav><a class="btn btn--gold nav__cta" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book</a><button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button></div></header>
-  <main id="main" class="section"><div class="container">
-    <header class="section__head"><h1 class="title">Pricing</h1><p class="muted">Transparent. Minimal. Premium options.</p></header>
-    <div id="tiers" class="grid pricing"></div>
-    <section class="section"><div class="container"><h2 class="title">Add‑ons & Extras</h2><div id="addons" class="grid pricing"></div></div></section>
-    <p class="center" style="margin-top:24px"><a class="btn btn--ghost" href="index.html">Back to Home</a></p>
-  </div></main>
-  <script>
-    const tiersEl = document.getElementById('tiers');
-    const addonsEl = document.getElementById('addons');
-    fetch('data/pricing.json').then(r=>r.json()).then(d=>{
-      tiersEl.innerHTML = d.tiers.map(t=>{
-        const features = t.features.map(f=>`<li>${f}</li>`).join('');
-        const cta = t.type === 'gold'
-          ? `<a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264?text=${encodeURIComponent(t.wa_text || (t.name + ' booking'))}">${t.cta}</a>`
-          : `<a class="btn btn--ghost" href="services.html">${t.cta}</a>`;
-        return `<section class="pricecard reveal"><h2>${t.name}</h2><p class="price">From <strong>${t.from}</strong></p><ul class="list">${features}</ul>${cta}</section>`;
-      }).join('');
-      addonsEl.innerHTML = d.addons.map(a=>`<div class="pricecard reveal"><h3>${a.name}</h3><p class="price"><strong>${a.price}</strong></p><p class="muted">${a.desc}</p></div>`).join('');
-    });
-  </script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Bathu Spa — Luxury Shoe Care & Custom Lab</title><link rel="stylesheet" href="styles.css"/></head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="assets/logo.svg" alt="Bathu Spa" width="32" height="32"/><span>Bathu Spa</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="book.html">Book</a>
+      <a href="index.html#transform">Transformations</a>
+      <a href="index.html#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book on WhatsApp</a>
+  </div>
+</header><main id="main"><section class="section"><div class="container"><h1 class="title">Luxury Shoe Care. Premium Handcrafted Service.</h1><p class="muted">Restore your sneakers. Protect your style.</p><div style="margin-top:14px"><a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book on WhatsApp</a> <a class="btn btn--ghost" href="services.html">View Services</a></div></div></section><section class="section" id="transform"><div class="container"><h2 class="title">Signature Services</h2><div class="grid services"><article class="card"><img class="card__img" src="assets/service-deep-clean.jpg" alt="Deep Clean"/><div class="card__body"><h3>Deep Clean</h3><p class="muted">Inside‑out restoration.</p><div style="display:flex;gap:10px;margin-top:10px"><a class="btn btn--ghost" href="deep-clean.html">Learn</a><a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264?text=Deep%20Clean%20booking%20request">Book</a></div></div></article><article class="card"><img class="card__img" src="assets/service-premium.jpg" alt="Premium Clean"/><div class="card__body"><h3>Premium Clean</h3><p class="muted">Delicate materials.</p><div style="display:flex;gap:10px;margin-top:10px"><a class="btn btn--ghost" href="premium-clean.html">Learn</a><a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264?text=Premium%20Clean%20booking%20request">Book</a></div></div></article><article class="card"><img class="card__img" src="assets/service-waterproof.jpg" alt="Bag Waterproofing"/><div class="card__body"><h3>Bag Waterproofing</h3><p class="muted">Nano‑coating.</p><div style="display:flex;gap:10px;margin-top:10px"><a class="btn btn--ghost" href="bag-waterproofing.html">Learn</a><a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264?text=Bag%20Waterproofing%20booking%20request">Book</a></div></div></article><article class="card"><img class="card__img" src="assets/service-custom.jpg" alt="Custom Lab"/><div class="card__body"><h3>Custom Lab</h3><p class="muted">Colour & art.</p><div style="display:flex;gap:10px;margin-top:10px"><a class="btn btn--ghost" href="custom-lab.html">Learn</a><a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264?text=Custom%20Lab%20booking%20request">Book</a></div></div></article></div></div></section><section class="section" id="why"><div class="container"><h2 class="title">Why Bathu Spa?</h2><p class="muted">Premium materials. Precision technique. Luxury finish.</p></div></section></main><footer class="footer" id="contact"><div class="container">
+  <div class="grid" style="grid-template-columns:1fr 1fr">
+    <div><img src="assets/logo.svg" alt="Bathu Spa" width="40" height="40"/><p class="muted">Luxury Shoe Care & Custom Lab</p></div>
+    <div><h4>Explore</h4><ul><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="book.html">Book</a></li><li><a href="index.html#transform">Transformations</a></li></ul></div>
+  </div>
+  <p class="muted">© <span id="year"></span> Bathu Spa</p>
+</div></footer><a class="whatsapp-float" target="_blank" rel="noopener" href="https://wa.me/27790834264">WhatsApp</a><script src="script.js"></script>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(console.error)}
+</script>
 </body></html>

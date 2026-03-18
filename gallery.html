@@ -1,44 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" class="page">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Gallery — Bathu Spa</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <style>
-    .gallery{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-    .gallery img{border-radius:12px;cursor:zoom-in}
-    @media(min-width:768px){.gallery{grid-template-columns:repeat(4,1fr)}}
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:3000}
-    .lightbox.open{display:flex}
-    .lightbox img{max-width:90vw;max-height:90vh;border-radius:12px}
-    .lightbox__close{position:fixed;top:24px;right:24px;background:#fff;color:#111;border-radius:999px;padding:8px 12px;font-weight:700}
-  </style>
-</head>
-<body class="page-body" data-page="gallery">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="nav"><div class="container nav__inner"><a href="/" class="nav__brand"><img src="assets/logo.svg" alt="Bathu Spa" width="32" height="32"/><span>Bathu Spa</span></a><nav class="nav__links"><a href="/services.html">Services</a><a href="/pricing.html">Pricing</a><a href="/gallery.html">Gallery</a></nav><a class="btn btn--gold nav__cta" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book</a><button class="nav__burger" aria-label="Menu"><span></span><span></span><span></span></button></div></header>
-  <main id="main" class="section"><div class="container">
-    <header class="section__head"><h1 class="title">Transformations Gallery</h1><p class="muted">Before and after — luxury finish that shows.</p></header>
-    <div class="gallery">
-      <img src="assets/before-after-1-before.jpg" alt="Before #1"/>
-      <img src="assets/before-after-1-after.jpg" alt="After #1"/>
-      <img src="assets/before-after-2-before.jpg" alt="Before #2"/>
-      <img src="assets/before-after-2-after.jpg" alt="After #2"/>
-      <img src="assets/service-deep-clean.jpg" alt="Deep Clean"/>
-      <img src="assets/service-premium.jpg" alt="Premium Clean"/>
-      <img src="assets/service-waterproof.jpg" alt="Bag Waterproofing"/>
-      <img src="assets/service-custom.jpg" alt="Custom Lab"/>
-    </div>
-  </div></main>
-  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview"><button class="lightbox__close" aria-label="Close">Close</button><img alt="Preview"/></div>
-  <script>
-    const lb = document.querySelector('.lightbox');
-    const lbImg = lb.querySelector('img');
-    document.querySelectorAll('.gallery img').forEach(img=>{
-      img.addEventListener('click',()=>{ lbImg.src = img.src; lb.classList.add('open'); lb.querySelector('button').focus(); });
-    });
-    lb.addEventListener('click',e=>{ if(e.target===lb || e.target.closest('button')) lb.classList.remove('open'); });
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape') lb.classList.remove('open'); });
-  </script>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Custom Lab — Bathu Spa</title><link rel="stylesheet" href="styles.css"/></head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="assets/logo.svg" alt="Bathu Spa" width="32" height="32"/><span>Bathu Spa</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="book.html">Book</a>
+      <a href="index.html#transform">Transformations</a>
+      <a href="index.html#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book on WhatsApp</a>
+  </div>
+</header><main id="main"><section class="section"><div class="container"><h1 class="title">Custom Lab</h1><img class="card__img" src="assets/service-custom.jpg" alt="Custom Lab"/><p class="muted" style="margin-top:10px">Premium materials. Precision technique. Luxury finish.</p><div style="margin-top:14px"><a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book on WhatsApp</a> <a class="btn btn--ghost" href="pricing.html">See pricing</a></div></div></section></main><footer class="footer" id="contact"><div class="container">
+  <div class="grid" style="grid-template-columns:1fr 1fr">
+    <div><img src="assets/logo.svg" alt="Bathu Spa" width="40" height="40"/><p class="muted">Luxury Shoe Care & Custom Lab</p></div>
+    <div><h4>Explore</h4><ul><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="book.html">Book</a></li><li><a href="index.html#transform">Transformations</a></li></ul></div>
+  </div>
+  <p class="muted">© <span id="year"></span> Bathu Spa</p>
+</div></footer><a class="whatsapp-float" target="_blank" rel="noopener" href="https://wa.me/27790834264">WhatsApp</a><script src="script.js"></script>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(console.error)}
+</script>
 </body></html>

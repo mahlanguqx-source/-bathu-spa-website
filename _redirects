@@ -1,2 +1,72 @@
-# Clean URL fallbacks
-/*    /index.html   200
+{
+  "tiers": [
+    {
+      "id": "basic",
+      "name": "Basic Clean",
+      "from": "R90",
+      "features": [
+        "Surface clean",
+        "Laces freshen",
+        "Deodorise"
+      ],
+      "cta": "Compare services",
+      "type": "ghost"
+    },
+    {
+      "id": "deep",
+      "name": "Deep Clean",
+      "from": "R120",
+      "features": [
+        "Inside‑out clean",
+        "Insoles & midsoles detailed",
+        "Suede/leather safe methods"
+      ],
+      "cta": "Book Deep Clean",
+      "type": "gold",
+      "wa_text": "Deep Clean booking request"
+    },
+    {
+      "id": "premium",
+      "name": "Premium Clean",
+      "from": "R200",
+      "features": [
+        "Delicate pairs care",
+        "Protection add‑ons",
+        "Priority turnaround"
+      ],
+      "cta": "Book Premium Clean",
+      "type": "gold",
+      "wa_text": "Premium Clean booking request"
+    },
+    {
+      "id": "custom",
+      "name": "Custom Lab",
+      "from": "R250",
+      "features": [
+        "Touch‑ups & repainting",
+        "Colour change & restoration",
+        "Bespoke artwork on request"
+      ],
+      "cta": "Book Custom Lab",
+      "type": "gold",
+      "wa_text": "Custom Lab booking request"
+    }
+  ],
+  "addons": [
+    {
+      "name": "Waterproofing",
+      "price": "R100 per item",
+      "desc": "Nano‑coating for shoes or bags."
+    },
+    {
+      "name": "Express Service",
+      "price": "R80",
+      "desc": "Same‑day or next‑day where possible."
+    },
+    {
+      "name": "Pickup & Delivery",
+      "price": "R60 local",
+      "desc": "Within service area; quote for longer distance."
+    }
+  ]
+}

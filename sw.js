@@ -1,22 +1,26 @@
-// Bathu Spa 3.0 — Service Worker (simple cache-first)
-const CACHE = 'bathu-spa-v3-' + (self.crypto ? Date.now() : Math.random());
-const ASSETS = [
-  '/',
-  '/index.html','/pricing.html','/services.html','/deep-clean.html','/premium-clean.html','/bag-waterproofing.html','/custom-lab.html',
-  '/styles.css','/script.js','/data/pricing.json','/gallery.html','/book.html','/404.html'
-];
-self.addEventListener('install', e=>{
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()));
-});
-self.addEventListener('activate', e=>{
-  e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>!k.startsWith('bathu-spa-v3-')).map(k=>caches.delete(k)))));
-  self.clients.claim();
-});
-self.addEventListener('fetch', e=>{
-  const url = new URL(e.request.url);
-  if (url.origin === location.origin) {
-    e.respondWith(caches.match(e.request).then(res=>res||fetch(e.request).then(r=>{
-      const copy = r.clone(); caches.open(CACHE).then(c=>c.put(e.request, copy)); return r;
-    }).catch(()=>caches.match('/404.html'))));
-  }
-});
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Services — Bathu Spa</title><link rel="stylesheet" href="styles.css"/></head><body><a class="skip-link" href="#main">Skip to content</a>
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__brand"><img src="assets/logo.svg" alt="Bathu Spa" width="32" height="32"/><span>Bathu Spa</span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="book.html">Book</a>
+      <a href="index.html#transform">Transformations</a>
+      <a href="index.html#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--gold" target="_blank" rel="noopener" href="https://wa.me/27790834264">Book on WhatsApp</a>
+  </div>
+</header><main id="main"><section class="section"><div class="container"><h1 class="title">Our Services</h1><div class="grid services"><article class="card"><img class="card__img" src="assets/service-deep-clean.jpg" alt="Deep Clean"/><div class="card__body"><h3>Deep Clean</h3><p class="muted">Inside‑out restoration.</p><p style="margin-top:10px"><a class="btn btn--ghost" href="deep-clean.html">View details</a></p></div></article><article class="card"><img class="card__img" src="assets/service-premium.jpg" alt="Premium Clean"/><div class="card__body"><h3>Premium Clean</h3><p class="muted">Delicate materials.</p><p style="margin-top:10px"><a class="btn btn--ghost" href="premium-clean.html">View details</a></p></div></article><article class="card"><img class="card__img" src="assets/service-waterproof.jpg" alt="Bag Waterproofing"/><div class="card__body"><h3>Bag Waterproofing</h3><p class="muted">Nano‑coating.</p><p style="margin-top:10px"><a class="btn btn--ghost" href="bag-waterproofing.html">View details</a></p></div></article><article class="card"><img class="card__img" src="assets/service-custom.jpg" alt="Custom Lab"/><div class="card__body"><h3>Custom Lab</h3><p class="muted">Colour & art.</p><p style="margin-top:10px"><a class="btn btn--ghost" href="custom-lab.html">View details</a></p></div></article></div></div></section></main><footer class="footer" id="contact"><div class="container">
+  <div class="grid" style="grid-template-columns:1fr 1fr">
+    <div><img src="assets/logo.svg" alt="Bathu Spa" width="40" height="40"/><p class="muted">Luxury Shoe Care & Custom Lab</p></div>
+    <div><h4>Explore</h4><ul><li><a href="services.html">Services</a></li><li><a href="pricing.html">Pricing</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="book.html">Book</a></li><li><a href="index.html#transform">Transformations</a></li></ul></div>
+  </div>
+  <p class="muted">© <span id="year"></span> Bathu Spa</p>
+</div></footer><a class="whatsapp-float" target="_blank" rel="noopener" href="https://wa.me/27790834264">WhatsApp</a><script src="script.js"></script>
+<script>
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(console.error)}
+</script>
+</body></html>
